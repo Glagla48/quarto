@@ -14,6 +14,7 @@ public class Quarto {
     private List<Player> players;
     private Player currentPlayer;
     private List<Token> availableTokens;
+    private List<Token> winningTokens;
 
     public Quarto()
     {
@@ -24,6 +25,7 @@ public class Quarto {
         this.currentPlayer = this.players.get(0);
 
         this.availableTokens = Token.createListOfTokens();
+        this.winningTokens = new ArrayList<>();
     }
 
     public Player getCurrentPlayer(){ return this.currentPlayer;}
@@ -39,6 +41,9 @@ public class Quarto {
 
     public Player getWinner(){return this.currentPlayer;}
 
+    public Board getBoard(){return this.board;}
+    public List<Token> getAvailableTokens(){return this.availableTokens;}
+
     private boolean isBoardFilled()
     {
         for(int x = 0; x <4; x++)
@@ -51,6 +56,8 @@ public class Quarto {
         }
         return false;
     }
+
+
 
     private boolean isThereAValidSquare()
     {
@@ -116,7 +123,7 @@ public class Quarto {
 
         while(true)
         {
-            tmpToken = this.currentPlayer.chooseMove(tmpToken, this.availableTokens, this.board);
+            tmpToken = this.currentPlayer.chooseMove(tmpToken, this);
             turn++;
             if(turn > 4)
             {
@@ -127,6 +134,16 @@ public class Quarto {
         }
 
         System.out.println("Le jeu est fini, cela a pris " + turn + "tours");
+        System.out.println(this);
+    }
+
+    @Override
+    /**
+     * {@inheritDoc}
+     */
+    public String toString()
+    {
+        return this.board.toString();
     }
 
 

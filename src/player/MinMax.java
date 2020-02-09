@@ -6,18 +6,18 @@ import game.Quarto;
 
 import java.util.List;
 
-public class AlphaBeta implements Player{
+public class MinMax implements Player{
 
     private int depth;
 
-    public AlphaBeta(int depth)
+    public MinMax(int depth)
     {
         this.depth = depth;
     }
-
 
     public Token chooseMove(Token t, Quarto quarto)
     {
         return null;
     }
+
 }
